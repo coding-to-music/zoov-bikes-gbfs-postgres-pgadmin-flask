@@ -1,11 +1,11 @@
-version: '3'
+version: "3.7"
 
 services:
   postgres:
     container_name: pg_container
     image: postgres
     healthcheck:
-      test: [ "CMD", "pg_isready", "-d", "zoovbikes", "-U", "postgres" ]
+      test: ["CMD", "pg_isready", "-d", "zoovbikes", "-U", "postgres"]
       timeout: 45s
       interval: 10s
       retries: 10
@@ -24,8 +24,8 @@ services:
   pgadmin:
     container_name: pgadmin_container
     depends_on:
-      postgres:
-        condition: service_healthy
+      - "postgres"
+        # condition: service_healthy
     image: dpage/pgadmin4
     restart: always
     environment:
@@ -36,18 +36,19 @@ services:
   free_bikes_saclay_watcher:
     container_name: free_bikes_saclay_watcher
     depends_on:
-      postgres:
-        condition: service_healthy
+      - "postgres"
+        # condition: service_healthy
     build: ./feed_watcher/
-    command: ["python3", "feed_watcher.py", "-c", "free_bike_status_saclay.json"]
+    command:
+      ["python3", "feed_watcher.py", "-c", "free_bike_status_saclay.json"]
     volumes:
-    - ./feed_watcher/:/feed_watcher/
+      - ./feed_watcher/:/feed_watcher/
   web_app:
     container_name: web_app
     depends_on:
-      postgres:
-        condition: service_healthy
+      - "postgres"
+        # condition: service_healthy
     build:
       context: ./app/
     ports:
-    - 8000:5000
+      - 8000:5000
