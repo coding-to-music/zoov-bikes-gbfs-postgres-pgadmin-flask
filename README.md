@@ -26,17 +26,34 @@ git remote add origin git@github.com:coding-to-music/zoov-bikes-gbfs-postgres-pg
 git push -u origin main
 ```
 
-## Screenshots
+## pgadmin PostgreSQL Admin UI
 
 http://localhost:5050/browser/
 
+Log in:
+
+- PGADMIN_DEFAULT_EMAIL: admin@admin.com
+- PGADMIN_DEFAULT_PASSWORD: root
+
+Create Database Connection:
+
+- ConnectionName: GBFS
+- Hostname:
+- Username: admin
+- Password: root
+
 ![Docker dashboard](./images/pgadmin-dashboard.png)
 
-The flask app should be on port 5000 but nothing is showing
+## App UI
 
-http://127.0.0.1:5000/
+There is no index page at http://localhost:8000
 
-http://localhost:5000
+```
+Not Found
+The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+```
+
+Use these routes:
 
 http://localhost:8000/free_bikes
 
@@ -44,14 +61,7 @@ http://localhost:8000/bikes_statistics
 
 1. At `/free_bikes` you can monitor free bikes available near a given location since a given period of time
 
-
 2. At `/bikes_statistics` you can monitor the total distance, total rented time and trip count for each bike and overall for a given time window
-
-
-```
-Not Found
-The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
-```
 
 ## docker ps
 
@@ -76,6 +86,7 @@ docker-compose down
 ```
 
 Output
+
 ```
 Stopping pgadmin_container         ... done
 Stopping free_bikes_saclay_watcher ... done
