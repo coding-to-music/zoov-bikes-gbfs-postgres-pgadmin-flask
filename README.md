@@ -117,6 +117,16 @@ Removing pg_container              ... done
 Removing network zoov-bikes-gbfs-postgres-pgadmin-flask_default
 ```
 
+## Clean up orphan volumes, images and containers
+
+```
+docker images prune -a
+
+docker container prune
+
+docker volume prune
+```
+
 # System Overview
 
 This repository aim to create a basic system to track free bikes provided by [Zoov](https://www.zoov.eu/) in Saclay/South Paris.
