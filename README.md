@@ -38,9 +38,27 @@ Log in:
 Create Database Connection:
 
 - ConnectionName: GBFS
-- Hostname:
+- Hostname: ip address of the server
+- APP_DB_USER=postgres
+- APP_DB_PASS=pass
+
+Other info from docker-compose:
+
 - Username: admin
 - Password: root
+- POSTGRES_USER=root
+- POSTGRES_PASSWORD=password
+
+## sql queries
+
+```
+-- select * from bikes
+-- select * from current_free_bikes
+-- select * from trips
+select count(*) from bikes;
+select count(*) from current_free_bikes;
+select count(*) from trips;
+```
 
 ![Docker dashboard](./images/pgadmin-dashboard.png)
 
